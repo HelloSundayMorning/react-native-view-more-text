@@ -117,7 +117,7 @@ class ViewMoreText extends React.Component {
     if (this.state.isFulltextShown) {
       return (
         <View onLayout={this.onLayoutFullText} style={styles.fullTextWrapper}>
-          <Text style={this.props.textStyle}>{this.props.children}</Text>
+          <Text style={this.props.textStyle} {...this.props.textProps}>{this.props.children}</Text>
         </View>
       );
     }
@@ -131,6 +131,7 @@ class ViewMoreText extends React.Component {
           <Text
             style={this.props.textStyle}
             numberOfLines={this.state.numberOfLines}
+            {...this.props.textProps}
           >
             {this.props.children}
           </Text>
@@ -150,12 +151,14 @@ ViewMoreText.propTypes = {
   afterExpand: PropTypes.func,
   numberOfLines: PropTypes.number.isRequired,
   textStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  textProps: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 ViewMoreText.defaultProps = {
   afterCollapse: () => {},
   afterExpand: () => {},
   textStyle: {},
+  textProps: {},
 };
 
 export default ViewMoreText;
